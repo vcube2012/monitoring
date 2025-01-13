@@ -20,7 +20,10 @@ class MonitoringTon implements ShouldQueue
     {
         //
     }
-
+    public function attempts()
+    {
+        return 1;
+    }
 
     /**
      * Execute the job.
