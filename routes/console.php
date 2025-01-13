@@ -12,7 +12,7 @@ Artisan::command('inspire', function () {
 Artisan::command('monitoring_ton', function () {
     $project = \App\Models\Project::query()->where('network' , 'ton')->get();
     foreach ($project as $item) {
-        MonitoringTon::dispatch($item->wallet , $item->id , $item->created_at->unix());
+        MonitoringTon::dispatchSync($item->wallet , $item->id , $item->created_at->unix());
     }
 });
 

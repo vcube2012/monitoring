@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class MonitoringTon implements ShouldQueue
@@ -19,6 +20,7 @@ class MonitoringTon implements ShouldQueue
     {
         //
     }
+
 
     /**
      * Execute the job.
@@ -37,11 +39,9 @@ class MonitoringTon implements ShouldQueue
                     'body' => $data,
                 ]);
             } catch (UniqueConstraintViolationException) {
-
-            exit(1);
-
+                exit(1);
             } catch (Throwable $e) {
-                dump($e->getMessage());
+                Log::critical($e->getMessage());
             }
         });
     }
