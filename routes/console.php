@@ -3,6 +3,7 @@
 use App\Jobs\MonitoringTon;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -14,3 +15,5 @@ Artisan::command('monitoring_ton', function () {
         MonitoringTon::dispatch($item->wallet , $item->id , $item->created_at->unix());
     }
 });
+
+Schedule::command('monitoring_ton')->everyMinute();
