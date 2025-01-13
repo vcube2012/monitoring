@@ -26,13 +26,24 @@ class Response implements ShouldQueue
     public function handle(): void
     {
             $client = \Illuminate\Support\Facades\Http::acceptJson();
+
             $response = $client->{$this->transaction->project->method}(query: $this->transaction->body, url: $this->transaction->project->webhook);
             $json = $response->body();
-            Request::query()->create([
-                'project_id' => $this->transaction->project_id,
-                'transaction_id' => $this->transaction->id,
-                'status' => $response->status(),
-                'response' => $json
-            ]);
+            try{
+                Request::query()->create([
+                    'project_id' => $this->transaction->project_id,
+                    'transaction_id' => $this->transaction->id,
+                    'status' => $response->status(),
+                    'response' => $json
+                ]);
+            }catch (\Throwable $e){
+                Request::query()->create([
+                    'project_id' => $this->transaction->project_id,
+                    'transaction_id' => $this->transaction->id,
+                    'status' => $e->getCode(),
+                    'response' => ['message' => $e->getMessage()]
+                ]);
+            }
+
     }
 }
