@@ -41,7 +41,7 @@ class Response implements ShouldQueue
                     'project_id' => $this->transaction->project_id,
                     'transaction_id' => $this->transaction->id,
                     'status' => $e->getCode(),
-                    'response' => ['message' => $e->getMessage()]
+                    'response' => json_encode(['message' => $e->getMessage()])
                 ]);
             }
 
