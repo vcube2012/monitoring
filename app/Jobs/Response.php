@@ -40,7 +40,7 @@ class Response implements ShouldQueue
                 Request::query()->create([
                     'project_id' => $this->transaction->project_id,
                     'transaction_id' => $this->transaction->id,
-                    'status' => $e->getCode(),
+                    'status' => 12,
                     'response' => json_encode(['message' => $e->getMessage()])
                 ]);
             }
