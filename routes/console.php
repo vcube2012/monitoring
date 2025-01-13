@@ -16,4 +16,4 @@ Artisan::command('monitoring_ton', function () {
     }
 });
 
-Schedule::command('monitoring_ton')->everyMinute();
+Schedule::command('monitoring_ton')->everyFiveMinutes();
