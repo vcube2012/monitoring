@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Project::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Project::class)->index()->constrained()->cascadeOnDelete();
             $table->string('signature')->unique();
             $table->jsonb('body');
             $table->timestamps();

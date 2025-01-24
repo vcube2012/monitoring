@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Project::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Transaction::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Project::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Transaction::class)->index()->constrained()->cascadeOnDelete();
             $table->integer('status');
             $table->jsonb('response')->nullable();
             $table->timestamps();
