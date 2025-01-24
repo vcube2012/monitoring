@@ -6,6 +6,7 @@ use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers\RequestsRelationManager;
 use App\Filament\Resources\ProjectResource\RelationManagers\TransactionsRelationManager;
 use App\Models\Project;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -38,6 +39,7 @@ class ProjectResource extends Resource
                     TextInput::make('name')->label('Назва проекта:'),
                     TextInput::make('wallet')->label('Кошелек:'),
                     TextInput::make('webhook')->label('Вебхук:'),
+                    TextInput::make('token')->label('токен:'),
                     Select::make('method')->label('Метод:')->options([
                         'post' => 'post',
                         'get' => 'get',
@@ -46,7 +48,8 @@ class ProjectResource extends Resource
                         'sol' => 'sol',
                         'gmg' => 'gmg',
                         'ton' => 'ton',
-                    ])->default('sol')
+                    ])->default('sol'),
+
                 ])
             ]);
     }
