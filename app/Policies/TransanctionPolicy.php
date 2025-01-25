@@ -45,7 +45,7 @@ class TransanctionPolicy
      */
     public function delete(User $user, Transanction $transanction): bool
     {
-        return $transanction->project->user_id == auth()->user()->id;
+        return true;
     }
 
     /**
