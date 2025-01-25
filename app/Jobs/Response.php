@@ -17,7 +17,7 @@ class Response implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public id $transaction_id)
+    public function __construct(public int $transaction_id)
     {
         //
     }

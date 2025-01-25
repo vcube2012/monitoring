@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\MonitoringTon;
+use App\Jobs\Response;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -26,6 +27,10 @@ Artisan::command('solana', function () {
 Artisan::command('delete', function () {
    \App\Models\Transaction::query()->delete();
    \App\Models\Request::query()->delete();
+});
+
+Artisan::command('test', function () {
+    Response::dispatchSync(357);
 });
 
 
