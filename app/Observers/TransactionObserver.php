@@ -9,6 +9,6 @@ class TransactionObserver
 {
     public function created(Transaction $transaction): void
     {
-        Response::dispatch($transaction);
+        Response::dispatch($transaction->id);
     }
 }
