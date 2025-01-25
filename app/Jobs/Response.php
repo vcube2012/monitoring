@@ -29,10 +29,9 @@ class Response implements ShouldQueue
     {
         $this->transaction = Transaction::query()->where('id', $this->transaction_id)->first();
         $client = \Illuminate\Support\Facades\Http::acceptJson();
-
-        $response = $client->{$this->transaction->project->method}(query: $this->transaction->body, url: $this->transaction->project->webhook);
-        $json = $response->body();
         try {
+            $response = $client->{$this->transaction->project->method}(query: $this->transaction->body, url: $this->transaction->project->webhook);
+            $json = $response->body();
             Request::query()->create([
                 'project_id' => $this->transaction->project_id,
                 'transaction_id' => $this->transaction->id,
