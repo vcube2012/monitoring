@@ -24,14 +24,22 @@ Artisan::command('solana', function () {
    dump($seed->getPublicKey()->toBase58());
 });
 
-Artisan::command('delete', function () {
-   \App\Models\Transaction::query()->delete();
-   \App\Models\Request::query()->delete();
-});
-
-Artisan::command('test', function () {
-    Response::dispatchSync(357);
-});
 
 
 Schedule::command('monitoring_ton')->everyTwoMinutes();
+
+
+Artisan::command('tests' , function (){
+    $r = \App\Models\Transaction::query()->whereDoesntHave('requests')->get();
+   foreach ($r as $item) {
+       Response::dispatchSync($item->id);
+   }
+});
+
+Schedule::command('tests')->everyTwoMinutes();
+
+
+Artisan::command('test2' , function (){
+    $r = \App\Models\Transaction::query()->whereDoesntHave('requests')->count();
+    dd($r);
+});

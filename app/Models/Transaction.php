@@ -22,4 +22,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(Project::class);
     }
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }
