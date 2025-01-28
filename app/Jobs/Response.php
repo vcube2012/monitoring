@@ -21,6 +21,7 @@ class Response implements ShouldQueue
     public function __construct( int $transaction_id)
     {
         $this->transaction_id = $transaction_id;
+        $this->onQueue('monitoring');
     }
 
     /**
