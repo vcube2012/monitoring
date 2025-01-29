@@ -8,3 +8,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/wallet/{project_token}/{user_id}', [\App\Http\Controllers\OwnerWalletController::class, 'index']);
+
+
+Route::get('/get_404' , function (Request $request) {
+    return \App\Models\Transaction::query()->whereRelation('requests' , 'status'  , 404)->get();
+});
