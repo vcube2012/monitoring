@@ -27,14 +27,14 @@ Artisan::command('solana', function () {
 
 Schedule::command('monitoring_ton')->everyTwoMinutes();
 
-
-Artisan::command('tests', function () {
-    $r = \App\Models\Transaction::query()
-        ->whereRelation('requests', 'status', 12)->delete();
-
-});
-
-Schedule::command('tests')->everyTwoMinutes();
+//
+//Artisan::command('tests', function () {
+//    $r = \App\Models\Transaction::query()
+//        ->whereRelation('requests', 'status', 12)->delete();
+//
+//});
+//
+//Schedule::command('tests')->everyTwoMinutes();
 
 
 Artisan::command('test2', function () {
